@@ -1,22 +1,31 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 
 
 def signup(request):
     # request_data = request.scheme
     # print(request_data)
     if request.method == 'POST':
-        first_name = request.POST.get('first_name')
+        first_name = request.POST.get('firstname')
         username = request.POST.get('username')
         password = request.POST.get('password')
-        User.objects.create(
+        User.objects.create_user(
             first_name=first_name,
             username=username,
             password=password
         )
-    return HttpResponse('<h1>Signup</h1>')
+        return redirect('signin')
+    return render(request, 'accounts/signup.html')
 
 
 def signin(request):
-    return HttpResponse('<h1>Signin</h1>')
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request)
+        if user is not None:
+            login(username, password)
+            return redirect('homepage')
+    return render(request, 'accounts/signin.html')
