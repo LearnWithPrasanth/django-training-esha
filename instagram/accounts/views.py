@@ -31,7 +31,7 @@ def signin(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('homepage')
+            return redirect('newsfeed:home')
     return render(request, 'accounts/signin.html')
 
 
