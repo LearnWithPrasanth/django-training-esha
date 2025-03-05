@@ -29,8 +29,8 @@ class RegistrationForm(forms.ModelForm):
         if password1 != password2:
             raise forms.ValidationError("Passwords do not match")
 
-        def save(self, commit=True):
-            user = super().save(commit=False)
-            if commit:
-                user.save()
-            return user
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        if commit:
+            user.save()
+        return user
