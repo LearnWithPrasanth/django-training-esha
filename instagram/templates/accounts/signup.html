@@ -8,13 +8,8 @@
 <body>
     <form method="post">
         {% csrf_token %}
-        <label for="">First name</label> 
-        <input type="text" name="firstname"> <br>
-        <label for="">Username</label> 
-        <input type="text" name="username"> <br>
-        <label for="">Password</label> 
-        <input type="password" name="password"> <br>
-        <button>Submit</button>
+        {{ form.as_p }}
+        <button>Register</button>
     </form>
 </body>
 </html>
