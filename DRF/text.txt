@@ -1,0 +1,10 @@
+Authentication (JWT)
+    login
+    register
+    logout
+    refresh_token and access_token
+
+Products
+    get_products (all products with basic info)
+    get_product (One product with complete information along with reviews etc)
+    
